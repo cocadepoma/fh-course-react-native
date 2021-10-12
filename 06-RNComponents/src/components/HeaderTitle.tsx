@@ -5,14 +5,17 @@ import { styles } from '../theme/appTheme'
 
 interface Props {
     title: string;
+    marginBottom?: number;
+    marginTop?: number;
+    fontSize?: number;
 };
 
-export const HeaderTitle = ({ title }: Props) => {
+export const HeaderTitle = ({ title, marginBottom = 20, marginTop = 20, fontSize = 35 }: Props) => {
     const { top } = useSafeAreaInsets();
 
     return (
-        <View style={{ marginTop: top + 20, marginBottom: 20 }}>
-            <Text style={styles.title}>{title}</Text>
+        <View style={{ marginTop: top + marginTop, marginBottom }}>
+            <Text style={{ ...styles.title, fontSize }}>{title}</Text>
         </View>
     );
 };

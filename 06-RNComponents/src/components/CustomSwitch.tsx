@@ -7,9 +7,9 @@ interface Props {
 };
 
 export const CustomSwitch = ({ isOn, onChange }: Props) => {
-    // const [isEnabled, setIsEnabled] = useState(isOn);
+    const [isEnabled, setIsEnabled] = useState(isOn);
     const toggleSwitch = () => {
-        // setIsEnabled(!isEnabled);
+        setIsEnabled(!isEnabled);
         onChange(!isOn);
     };
 
@@ -20,7 +20,7 @@ export const CustomSwitch = ({ isOn, onChange }: Props) => {
             thumbColor={Platform.OS === 'android' ? "white" : ""}
             // ios_backgroundColor="#3e3e3e"
             onValueChange={toggleSwitch}
-            value={isOn}
+            value={isEnabled}
         />
     )
 }
