@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Switch, View, Platform, Text, StyleSheet } from 'react-native'
 import { CustomSwitch } from '../components/CustomSwitch';
 import { HeaderTitle } from '../components/HeaderTitle';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const SwitchScreen = () => {
     const [state, setState] = useState({
@@ -10,6 +11,7 @@ export const SwitchScreen = () => {
         isHappy: true,
     });
     const { isActive, isHungry, isHappy } = state;
+    const { theme: { colors } } = useContext(ThemeContext);
 
     const onChange = (value: boolean, field: string) => {
         setState({
@@ -17,6 +19,19 @@ export const SwitchScreen = () => {
             [field]: value,
         });
     };
+
+    const styles = StyleSheet.create({
+        switchText: {
+            color: colors.text,
+            fontSize: 25
+        },
+        switchRow: {
+            alignItems: 'center',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            marginBottom: 15,
+        },
+    });
 
     return (
         <View style={{ marginHorizontal: 20 }}>
@@ -44,17 +59,5 @@ export const SwitchScreen = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    switchText: {
-        color: '#565656',
-        fontSize: 25
-    },
-    switchRow: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 15,
-    },
-});
 
 

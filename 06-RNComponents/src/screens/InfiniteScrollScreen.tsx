@@ -1,12 +1,14 @@
-import React, { useState } from 'react'
-import { ActivityIndicator, Image, StyleSheet, Text, View } from 'react-native'
+import React, { useContext, useState } from 'react'
+import { ActivityIndicator, Image, StyleSheet, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
 import { FadeInImage } from '../components/FadeInImage';
 import { HeaderTitle } from '../components/HeaderTitle'
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 
 export const InfiniteScrollScreen = () => {
     const [numbers, setNumbers] = useState([0, 1, 2, 3, 4, 5]);
+    const { theme: { colors } } = useContext(ThemeContext);
 
     const renderItem = (item: number) => {
         const uri = `https://picsum.photos/id/${item}/1024/1024`;
@@ -43,7 +45,7 @@ export const InfiniteScrollScreen = () => {
                 // keyExtractor={(item) => item.toString()}
                 renderItem={({ item }) => renderItem(item)}
                 ListHeaderComponent={() => (
-                    <View style={{ marginHorizontal: 20 }}>
+                    <View style={{ marginHorizontal: 20, backgroundColor: colors.background }}>
                         <HeaderTitle title="Infinite Scroll" />
                     </View>
                 )}
@@ -56,16 +58,10 @@ export const InfiniteScrollScreen = () => {
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}>
-                        <ActivityIndicator size={30} color="#5856D6" />
+                        <ActivityIndicator size={30} color={colors.primary} />
                     </View>
                 )}
             />
         </View>
     );
 };
-const styles = StyleSheet.create({
-    textItem: {
-        backgroundColor: 'green',
-        height: 150
-    }
-});

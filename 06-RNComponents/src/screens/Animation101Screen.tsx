@@ -1,5 +1,6 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import { StyleSheet, View, Animated, Button, Easing } from 'react-native';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 import { useAnimation } from '../hooks/useAnimation';
 
 export const Animation101Screen = () => {
@@ -10,19 +11,29 @@ export const Animation101Screen = () => {
         position,
         startMovingPosition
     } = useAnimation();
-
+    const { theme: { colors } } = useContext(ThemeContext);
     return (
         <View style={styles.container}>
-            <Animated.View style={{
-                ...styles.purpleBox,
-                opacity,
-                transform: [{ translateX: position }]
-            }} />
-            <Button title="fadeIn" onPress={() => {
-                fadeIn();
-                startMovingPosition(100);
-            }} />
-            <Button title="fadeOut" onPress={fadeOut} />
+            <Animated.View
+                style={{
+                    ...styles.purpleBox,
+                    backgroundColor: colors.primary,
+                    opacity,
+                    transform: [{ translateX: position }]
+                }} />
+            <Button
+                title="fadeIn"
+                onPress={() => {
+                    fadeIn(300);
+                    startMovingPosition(100);
+                }}
+                color={colors.primary}
+            />
+            <Button
+                color={colors.primary}
+                title="fadeOut"
+                onPress={fadeOut}
+            />
         </View>
     );
 };

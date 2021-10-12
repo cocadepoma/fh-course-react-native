@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Modal, Text, TouchableOpacity, View } from 'react-native'
 import { HeaderTitle } from '../components/HeaderTitle';
 import { styles } from '../theme/appTheme';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { ThemeContext } from '../context/themeContext/ThemeContext';
 
 export const ModalScreen = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const { theme: { colors } } = useContext(ThemeContext);
     return (
         <View style={styles.globalMArgin}>
             <HeaderTitle title="Modal Screen" />
             <Button
                 title="Open Modal"
                 onPress={() => { setIsVisible(true) }}
+                color={colors.primary}
             />
 
             <Modal
@@ -41,8 +44,8 @@ export const ModalScreen = () => {
                         elevation: 10,
                         borderRadius: 10,
                     }}>
-                        <HeaderTitle title="Modal" marginTop={10} />
-                        <Text>Modal Body</Text>
+                        <HeaderTitle title="Modal" marginTop={10} color="black" />
+                        <Text style={{ color: 'black' }}>Modal Body</Text>
                         <TouchableOpacity
                             style={{
                                 position: 'absolute',
@@ -53,13 +56,13 @@ export const ModalScreen = () => {
                         >
                             <Icon
                                 name="close-outline"
-                                color="#5856D6"
+                                color={colors.primary}
                                 size={45}
                             />
                         </TouchableOpacity>
                     </View>
                 </View>
-            </Modal>
-        </View>
+            </Modal >
+        </View >
     );
 };

@@ -1,14 +1,36 @@
-import React from 'react'
-import { Text, View } from 'react-native';
+import React from 'react';
 
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, DefaultTheme, DarkTheme, Theme } from '@react-navigation/native';
 import Navigation from './src/navigation/Navigation';
+import { ThemeProvider } from './src/context/themeContext/ThemeContext';
+
+// const customTheme: Theme = {
+//   dark: false,
+//   colors: {
+//     ...DefaultTheme.colors,
+//     // primary: string;
+//     // background: string;
+//     // card: string;
+//     // text: string;
+//     // border: string;
+//     // notification: string;
+//   }
+// };
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <AppState>
       <Navigation />
-    </NavigationContainer>
+    </AppState>
   );
 };
+
+const AppState = ({ children }: any) => {
+  return (
+    <ThemeProvider>
+      {children}
+    </ThemeProvider>
+  );
+};
+
 export default App;
