@@ -9,8 +9,8 @@ type AuthContextProps = {
   token: string | null;
   user: User | null;
   status: 'checking' | 'authenticated' | 'notAuthenticated';
-  signUp: (registerData: RegisterData) => void;
-  signIn: (loginData: LoginData) => void;
+  signUp: (registerData: RegisterData) => Promise<boolean>;
+  signIn: (loginData: LoginData) => Promise<boolean>;
   logOut: () => void;
   removeError: () => void;
 };
@@ -68,11 +68,13 @@ export const AuthProvider = ({ children }: any) => {
         }
       });
       await AsyncStorage.setItem('token', data.token);
+      return true;
     } catch (error: any) {
       dispatch({
         type: 'addError',
         payload: error.response.data.msg || 'Something went wrong'
       });
+      return false;
     }
   };
 
@@ -87,11 +89,13 @@ export const AuthProvider = ({ children }: any) => {
         }
       });
       await AsyncStorage.setItem('token', data.token);
+      return true;
     } catch (error: any) {
       dispatch({
         type: 'addError',
         payload: error.response.data.errors[0].msg || 'Check the information'
       });
+      return false;
     }
   };
 

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const baseURL = 'http://192.168.1.137:8080/api';
+const baseURL = 'https://cafenode-react-native.herokuapp.com/api';
+// const baseURL = 'http://192.168.1.144:8080/api';
 
 const cafeApi = axios.create({ baseURL });
 

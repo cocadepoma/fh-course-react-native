@@ -8,7 +8,7 @@ export const LoadingScreen = () => {
             alignItems: 'center',
             justifyContent: 'center'
         }}>
-            <ActivityIndicator color="black" size={50} />
+            <ActivityIndicator color="orange" size={50} />
         </View>
     );
 };

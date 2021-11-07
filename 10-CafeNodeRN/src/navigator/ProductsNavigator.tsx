@@ -22,19 +22,19 @@ export const ProductsNavigator = () => {
       screenOptions={{
         ...TransitionScreenOptions,
         cardStyle: {
-          backgroundColor: 'rgba(250, 235, 194, 0.7)',
+          backgroundColor: 'rgb(4, 16, 33)',
         },
         headerStyle: {
-          elevation: 10,
-          // shadowColor: 'transparent',
+          elevation: 0,
+          shadowColor: 'transparent',
         },
         headerTintColor: 'white',
-        headerBackground: () => <View style={{ backgroundColor: 'rgba(68, 65, 59, 1)', height: '100%' }} />,
+        headerBackground: () => <View style={{ backgroundColor: 'rgba(255, 204, 0, 0.8)', height: '100%' }} />,
         cardOverlay: () => (
           <View
             style={{
               flex: 1,
-              backgroundColor: 'rgba(68, 65, 59, 0.4)',
+              backgroundColor: 'rgb(4, 16, 33)',
             }}
           />),
       }}
@@ -42,12 +42,12 @@ export const ProductsNavigator = () => {
       <Stack.Screen
         name="ProductsScreen"
         component={ProductsScreen}
-        options={{ title: 'Productos' }}
+        options={{ title: 'Products' }}
       />
       <Stack.Screen
         name="ProductScreen"
         component={ProductScreen}
-        options={{ title: 'Producto' }}
+        options={{ title: 'Product' }}
       />
     </Stack.Navigator>
   )

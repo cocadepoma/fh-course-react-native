@@ -11,9 +11,8 @@ export const useCategories = () => {
   }, []);
 
   const getCategories = async () => {
-    const resp = await cafeApi.get<CategoriesResponse>('/categorias');
+    const resp = await cafeApi.get<CategoriesResponse>('/categorias?limite=100');
     setCategories(resp.data.categorias);
-    console.log(resp.data.categorias)
     setIsLoading(false);
   };
 
